@@ -2,9 +2,9 @@
 
 Selamat datang di proyek **React Js. CHAT APP**! 🚀
 
-## How to Run the Project
+## Cara Menjalankan Proyek
 
-1. **Clone the repository:**
+1. **Clone repository:**
    ```bash
    git clone https://github.com/your-username/your-repo-name.git
    cd your-repo-name
@@ -15,12 +15,27 @@ Selamat datang di proyek **React Js. CHAT APP**! 🚀
    npm install
    ```
 
-3. **Start the development server:**
+3. **Mulai server pengembangan:**
    ```bash
-   npm start
+   npm run dev
    ```
 
-4. **Open the app in your browser:**
-   Navigate to `http://localhost:3000` in your web browser.
+4. **Buka aplikasi di browser Anda:**
+   Arahkan ke `http://localhost:3000` di browser Anda.
+
+5. **Buat akun pengguna baru:**
+   Isi formulir pendaftaran dengan informasi yang diperlukan dan klik "Sign Up".
+
+6. **Login ke aplikasi:**
+   Masukkan email dan kata sandi yang telah Anda daftarkan, lalu klik "Sign In".
+
+7. **Mulai chat dengan pengguna lain:**
+   Pilih pengguna dari daftar chat dan mulai mengirim pesan.
+
+8. **Sesuaikan pengaturan chat:**
+   Klik ikon pengaturan di bagian atas chat untuk mengubah preferensi chat Anda.
+
+9. **Logout dari aplikasi:**
+    Klik tombol "Logout" di bagian pengaturan untuk keluar dari aplikasi.
 
 GAS SLUR 😊
