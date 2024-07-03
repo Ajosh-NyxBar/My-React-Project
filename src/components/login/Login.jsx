@@ -1,7 +1,10 @@
 import { toast } from "react-toastify";
 import "./login.css";
 import { useState } from "react";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 import { auth } from "../../lib/firebase";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "../../lib/firebase";
@@ -24,8 +27,23 @@ const Login = () => {
     }
   };
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
+    setLoading(true);
+
+    const formData = new FormData(e.target);
+    const { email, password } = Object.fromEntries(formData);
+
+    try {
+      const res = await signInWithEmailAndPassword(auth, email, password);
+      console.log(res);
+      toast.success("Login Successfully");
+    } catch (err) {
+      console.log(err);
+      toast.error(err.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleRegister = async (e) => {
@@ -67,7 +85,9 @@ const Login = () => {
         <form onSubmit={handleLogin}>
           <input type="text" name="email" placeholder="Email" />
           <input type="password" name="password" placeholder="Password" />
-          <button disabled={loading}>{loading ? "Loading..." : "Sign In"}</button>
+          <button disabled={loading}>
+            {loading ? "Loading..." : "Sign In"}
+          </button>
         </form>
       </div>
       <div className="separator"></div>
@@ -88,7 +108,9 @@ const Login = () => {
           <input type="text" name="username" placeholder="Username" />
           <input type="text" name="email" placeholder="Email" />
           <input type="password" name="password" placeholder="Password" />
-          <button disabled={loading}>{loading ? "Loading..." : "Sign Up"}</button>
+          <button disabled={loading}>
+            {loading ? "Loading..." : "Sign Up"}
+          </button>
         </form>
       </div>
     </div>
