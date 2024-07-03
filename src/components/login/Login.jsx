@@ -1,14 +1,16 @@
 import { toast } from "react-toastify";
 import "./login.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  onAuthStateChanged,
 } from "firebase/auth";
 import { auth } from "../../lib/firebase";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "../../lib/firebase";
 import upload from "../../lib/upload";
+import Chat from "../chat/Chat"; // Import komponen Chat
 
 const Login = () => {
   const [avatar, setAvatar] = useState({
@@ -17,6 +19,19 @@ const Login = () => {
   });
 
   const [loading, setLoading] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false); // State untuk memantau status autentikasi
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setIsAuthenticated(true); // Set state isAuthenticated menjadi true jika user sudah login
+      } else {
+        setIsAuthenticated(false); // Set state isAuthenticated menjadi false jika user belum login
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   const handleAvatar = (e) => {
     if (e.target.files[0]) {
@@ -56,6 +71,11 @@ const Login = () => {
     try {
       const res = await createUserWithEmailAndPassword(auth, email, password);
 
+      if (!avatar.file) {
+        toast.error("Please upload an avatar image.");
+        throw new Error("Please upload an avatar image.");
+      }
+
       const imgUrl = await upload(avatar.file);
 
       await setDoc(doc(db, "users", res.user.uid), {
@@ -71,6 +91,7 @@ const Login = () => {
       });
 
       toast.success("Account created successfully");
+      console.log(res.user.uid);
     } catch (error) {
       toast.error(error.message);
     } finally {
