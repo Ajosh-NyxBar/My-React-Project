@@ -7,9 +7,11 @@ import Detail from "./components/detail/Detail";
 import Login from "./components/login/Login";
 import Notifiaction from "./components/notification/Notifiaction";
 import { useUserStore } from "./lib/userStore";
+import { useChatStore } from "./lib/chatStore"; // Added missing import
 
 const App = () => {
   const { currentUser, fetchUserInfo, isLoading } = useUserStore();
+  const { chatId } = useChatStore();
 
   useEffect(() => {
     const unSub = onAuthStateChanged(auth, (user) => {
@@ -34,8 +36,8 @@ const App = () => {
       {currentUser ? (
         <>
           <List user={currentUser} />
-          <Chat user={currentUser} />
-          <Detail user={currentUser} />
+       {chatId && <Chat  />}
+      {chatId && <Detail />}
         </>
       ) : (
         <Login />
