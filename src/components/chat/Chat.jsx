@@ -97,13 +97,10 @@ const Chat = () => {
     <div className="chat">
       <div className="top">
         <div className="user">
-          <img src="./avatar.png" alt="" />
+          <img src={user.avatar || "./avatar.png"} alt="" />
           <div className="texts">
-            <span>Akbar Josh</span>
-            <p>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nisi,
-              nesciunt.
-            </p>
+            <span>{user.username}</span>
+            <p>{user.status || "Available"}</p>
           </div>
         </div>
         <div className="icons">
@@ -114,11 +111,14 @@ const Chat = () => {
       </div>
       <div className="center">
         {chat?.messages?.map((message) => (
-          <div className="message own" key={message?.createdAt}>
+          <div
+            className={`message ${message.senderId === currentUser.id ? "own" : ""}`}
+            key={message?.createdAt}
+          >
             <div className="texts">
               {message.img && <img src={message.img} alt="" />}
               <p>{message.text}</p>
-              <span>{message.createdAt.toString()}</span>
+              <span>{new Date(message.createdAt.seconds * 1000).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}</span>
             </div>
           </div>
         ))}
