@@ -1,4 +1,4 @@
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, updateDoc, arrayRemove, arrayUnion } from "firebase/firestore";
 import { create } from "zustand";
 import { db } from "./firebase";
 import { useUserStore } from "./userStore";
@@ -42,10 +42,25 @@ export const useChatStore = create((set) => ({
     }
   },
 
-  changeBlocked: () => {
-    set((state) => ({
-      ...state,
-      isReceiverBlocked: !state.isReceiverBlocked,
-    }));
+  changeBlocked: async () => {
+    const { currentUser } = useUserStore.getState();
+    const { user, isReceiverBlocked } = useChatStore.getState();
+
+    if (!user) return;
+
+    const userDocRef = doc(db, "users", currentUser.id);
+
+    try {
+      await updateDoc(userDocRef, {
+        blocked: isReceiverBlocked ? arrayRemove(user.id) : arrayUnion(user.id),
+      });
+
+      set((state) => ({
+        ...state,
+        isReceiverBlocked: !state.isReceiverBlocked,
+      }));
+    } catch (error) {
+      console.error("Error updating block status:", error);
+    }
   },
 }));

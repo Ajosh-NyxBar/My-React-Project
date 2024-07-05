@@ -141,6 +141,11 @@
       font-size: 16px;
       outline: none;
       color: white;
+
+      &:disabled {
+        background-color: #c12525;
+        cursor: not-allowed;
+      }
     }
 
     .emoji {
@@ -159,7 +164,11 @@
       border: none;
       border-radius: 5px;
       cursor: pointer;
-      
+
+      &:disabled {
+        background-color: #c12525;
+        cursor: not-allowed;
+      }
     }
   }
 }
