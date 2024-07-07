@@ -1,9 +1,18 @@
-import React from 'react'
+import React from "react";
+import { useThemeContext } from "../context/themeContext";
+import styled from "styled-components";
 
 function Sidebar() {
-    return (
-        <div>Sidebar</div>
-    )
+  const theme = useThemeContext();
+
+  return <SidebarStyled theme={theme}>Sidebar</SidebarStyled>;
 }
 
-export default Sidebar
+const SidebarStyled = styled.div`
+  width: 400px;
+  height: calc(100vh - 8vh);
+  background-color: red;
+  position: fixed;
+`;
+
+export default Sidebar;
