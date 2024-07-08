@@ -9,9 +9,9 @@ function Sidebar() {
 }
 
 const SidebarStyled = styled.div`
-  width: 400px;
+  width: ${props => props.theme.sidebarWidth};
   height: calc(100vh - 8vh);
-  background-color: red;
+  background-color: ${props => props.theme.colorBg2};
   position: fixed;
 `;
 

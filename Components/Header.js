@@ -7,7 +7,9 @@ export default function Header() {
 
     return (
         <HeaderStyled theme={theme}>
-            Header
+          <div class="logo-con">
+            
+          </div>
         </HeaderStyled>
     );
 }

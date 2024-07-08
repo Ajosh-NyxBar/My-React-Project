@@ -1,5 +1,6 @@
 import Header from "../Components/Header";
-import Sidebar from "../Components/Sidebar";
+import Layout from "../Components/Layout";
+import MainContent from "../Components/MainContent";
 import { useThemeContext } from "../context/themeContext";
 
 export default function Home() {
@@ -7,8 +8,11 @@ export default function Home() {
   console.log(theme);
   return (
     <div>
-      <Header />
-      <Sidebar />
+      <Layout>
+        <MainContent>
+          
+        </MainContent>
+      </Layout>
     </div>
   );
 }
