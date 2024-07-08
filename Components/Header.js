@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useThemeContext } from "../context/themeContext";
+import bars from "../utilts/icons"
 
 export default function Header() {
     const theme = useThemeContext();
@@ -8,7 +9,11 @@ export default function Header() {
     return (
         <HeaderStyled theme={theme}>
           <div class="logo-con">
-            
+            <div class="h-menu">
+                 <button type="button"> 
+                 {bars}
+                 </button>
+            </div>
           </div>
         </HeaderStyled>
     );
