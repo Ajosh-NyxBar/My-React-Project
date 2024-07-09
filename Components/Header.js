@@ -55,7 +55,7 @@ const HeaderStyled = styled.header`
   top: 0;
 
   i {
-    color: ${(props) => props.theme.colorIcons};
+    color: ${(props) => props.theme.colorIcons} ;
     font-size: 1.5rem;
   }
 

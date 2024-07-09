@@ -11,7 +11,7 @@ const menu = [
     {
         id: 2,
         name: 'Popular',
-        url: '/popular',
+        url: '/Popular',
         icon: fire
     },
     {

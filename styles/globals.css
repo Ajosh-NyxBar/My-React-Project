@@ -30,3 +30,8 @@ textarea, input, button{
   background: transparent;
   cursor: pointer;
 }
+
+a{
+  color: inherit;
+  text-decoration: none;
+}

@@ -1,12 +1,12 @@
 import React from "react";
 import Header from "./Header";
-import SideBar from "./SideBar";
+import Sidebar from "./Sidebar";
 
 function Layout({ children }) {
   return (
     <React.Fragment>
       <Header />
-      <SideBar />
+      <Sidebar />
       {children}
     </React.Fragment>
   );

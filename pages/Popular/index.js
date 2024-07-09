@@ -2,14 +2,14 @@ import React from 'react'
 import Layout from '../../Components/Layout'
 import MainContent from '../../Components/MainContent';
 
-function Popular() {
+function popular() {
   return (
     <Layout>
         <MainContent>
-            Popular
+            TEST
         </MainContent>
     </Layout>
   )
 }
 
-export default Popular;
+export default popular;
