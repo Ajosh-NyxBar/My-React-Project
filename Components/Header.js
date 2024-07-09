@@ -1,10 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import { useThemeContext } from "../context/themeContext";
-import { bars, moon } from "../utilts/icons";
+import { bars, discord, moon } from "../utilts/icons";
 import Image from "next/image";
 import logo from "../utilts/logo.svg";
 import SearchForm from "./SearchForm";
+import Button from "./Button";
 
 export default function Header() {
   const theme = useThemeContext();
@@ -25,6 +26,17 @@ export default function Header() {
           <SearchForm />
         </div>
         <button className="h-btn theme">{moon}</button>
+        <Button
+          name={"Join"}
+          selector={"btn-login"}
+          padding={".6rem 2rem"}
+          borderRad={"0.8rem"}
+          fw={"bold"}
+          fs={"1.2rem"}
+          background={theme.colorPrimary2}
+          blob={"blob"}
+          icon={discord}
+        />
       </div>
     </HeaderStyled>
   );
@@ -81,14 +93,14 @@ const HeaderStyled = styled.header`
     }
   }
 
-  .user-content{
+  .user-content {
     display: flex;
     align-items: center;
     .h-btn {
       margin: ${(props) => props.theme.marLRSm};
     }
-    i{
-      transition: all .3s ease-in-out;
+    i {
+      transition: all 0.3s ease-in-out;
     }
   }
 `;
