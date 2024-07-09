@@ -21,3 +21,12 @@ body{
   color: #e5e7eb;
   font-size: 17px;
 }
+
+textarea, input, button{
+  font-family: inherit;
+  font-size: inherit;
+  outline: none;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}

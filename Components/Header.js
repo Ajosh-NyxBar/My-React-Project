@@ -1,33 +1,94 @@
 import React from "react";
 import styled from "styled-components";
 import { useThemeContext } from "../context/themeContext";
-import bars from "../utilts/icons"
+import { bars, moon } from "../utilts/icons";
+import Image from "next/image";
+import logo from "../utilts/logo.svg";
+import SearchForm from "./SearchForm";
 
 export default function Header() {
-    const theme = useThemeContext();
+  const theme = useThemeContext();
 
-    return (
-        <HeaderStyled theme={theme}>
-          <div class="logo-con">
-            <div class="h-menu">
-                 <button type="button"> 
-                 {bars}
-                 </button>
-            </div>
-          </div>
-        </HeaderStyled>
-    );
+  return (
+    <HeaderStyled theme={theme}>
+      <div className="logo-con">
+        <div className="h-menu">
+          <button type="button">{bars}</button>
+        </div>
+        <div className="logo">
+          <Image src={logo} alt="logo" width={40} height={40} />
+          <h4>Ajosh Portal Game</h4>
+        </div>
+      </div>
+      <div className="user-content">
+        <div className="form-con">
+          <SearchForm />
+        </div>
+        <button className="h-btn theme">{moon}</button>
+      </div>
+    </HeaderStyled>
+  );
 }
 
 const HeaderStyled = styled.header`
-    height: 8vh;
-    width: 100%;
-    background-color: ${props => props.theme.colorBg};
+  height: 8vh;
+  width: 100%;
+  background-color: ${(props) => props.theme.colorBg};
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: ${(props) => props.theme.padLRSm};
+  z-index: 3;
+  position: fixed;
+  top: 0;
+
+  i {
+    color: ${(props) => props.theme.colorIcons};
+    font-size: 1.5rem;
+  }
+
+  .logo-con {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: ${props => props.theme.padLRSm};
-    z-index: 3;
-    position: fixed;
-    top: 0;
+
+    .h-menu {
+      button {
+        outline: none;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        margin-right: 1rem;
+        i {
+          font-size: 1.5rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          &:hover {
+            color: ${(props) => props.theme.colorIcons2};
+            transition: all 0.4s ease-in-out;
+          }
+        }
+      }
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+    h4 {
+      font-size: ${(props) => props.theme.fH4};
+      margin-left: 0.5rem;
+      color: ${(props) => props.theme.colorGrey0};
+    }
+  }
+
+  .user-content{
+    display: flex;
+    align-items: center;
+    .h-btn {
+      margin: ${(props) => props.theme.marLRSm};
+    }
+    i{
+      transition: all .3s ease-in-out;
+    }
+  }
 `;
