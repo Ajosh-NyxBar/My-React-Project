@@ -4,17 +4,21 @@ import styled from "styled-components";
 import menu from "../utilts/menu";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useStatsContext } from "../context/context";
 
 function Sidebar() {
   const theme = useThemeContext();
   const router = useRouter();
-  
+  const { collapsed } = useStatsContext();
+
+  console.log(collapsed); 
+
   const handleClick = (url) => {
     router.push(url);
-  }
+  };
 
   return (
-    <SidebarStyled theme={theme}>
+    <SidebarStyled theme={theme} collapsed={collapsed}>
       <nav className="navigation">
         <div className="top-nav">
           <ul className="nav-items">
@@ -50,8 +54,9 @@ function Sidebar() {
 }
 
 const SidebarStyled = styled.div`
-  width: ${(props) => props.theme.sidebarWidth};
+  width: ${(props) => (props.collapsed ? props.theme.sidebarCollapsed : props.theme.sidebarWidth)};
   height: calc(100vh - 8vh);
+  
   background-color: ${(props) => props.theme.colorBg2};
   position: fixed;
   display: flex;
@@ -74,7 +79,7 @@ const SidebarStyled = styled.div`
     justify-content: space-between;
     height: 100%;
     .nav-item {
-      padding: 0.5rem 2rem;
+      padding: ${(props) => props.collapsed ? "0.79rem 2rem" : "0.6rem 2rem"};
       display: grid;
       grid-template-columns: 40px 1fr;
       margin: 0.3rem 0;
@@ -96,22 +101,30 @@ const SidebarStyled = styled.div`
           width: 100%;
         }
       }
+      i{
+        display: flex;
+        align-items: center;
+      }
+      a{
+        display: ${(props) => props.collapsed ? "none" : "initial"};
+      }
     }
   }
 
-  footer{
+  footer {
     padding: 1rem 2rem;
     border-top: 1px solid ${(props) => props.theme.borderColor};
-    .links{
+    display: ${(props) => props.collapsed ? "none" : "initial"};
+    .links {
       display: flex;
       align-items: center;
       justify-content: center;
-      a{
+      a {
         font-size: ${(props) => props.theme.fontSmall};
         margin: 0 0.5rem;
       }
     }
-    p{
+    p {
       font-size: ${(props) => props.theme.fontSmall};
       text-align: center;
       margin: 0.5rem 0;

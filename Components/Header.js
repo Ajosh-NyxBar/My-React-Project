@@ -6,15 +6,17 @@ import Image from "next/image";
 import logo from "../utilts/logo.svg";
 import SearchForm from "./SearchForm";
 import Button from "./Button";
+import { useStatsContext } from "../context/context";
 
 export default function Header() {
   const theme = useThemeContext();
+  const { collapseMenu } = useStatsContext();
 
   return (
     <HeaderStyled theme={theme}>
       <div className="logo-con">
         <div className="h-menu">
-          <button type="button">{bars}</button>
+          <button type="button" onClick={collapseMenu}>{bars}</button>
         </div>
         <div className="logo">
           <Image src={logo} alt="logo" width={40} height={40} />
@@ -55,7 +57,7 @@ const HeaderStyled = styled.header`
   top: 0;
 
   i {
-    color: ${(props) => props.theme.colorIcons} ;
+    color: ${(props) => props.theme.colorIcons};
     font-size: 1.5rem;
   }
 
