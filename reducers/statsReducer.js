@@ -1,4 +1,14 @@
-import { BEGIN_DATA_FETCH, COLLAPSE_MENU, DATA_FETCH_FAILURE, DATA_FETCH_SUCCESS, INCREASE_PAGE_SIZE } from "../utilts/action";
+import {
+  BEGIN_DATA_FETCH,
+  CLOSE_MODAL,
+  COLLAPSE_MENU,
+  DATA_FETCH_FAILURE,
+  DATA_FETCH_SUCCESS,
+  FETCH_GAME_FAILURE,
+  FETCH_GAME_SUCCESS,
+  INCREASE_PAGE_SIZE,
+  OPEN_MODAL,
+} from "../utilts/action";
 
 const statsReducer = (state, action) => {
   if (action.type === COLLAPSE_MENU) {
@@ -16,6 +26,23 @@ const statsReducer = (state, action) => {
   }
   if (action.type === INCREASE_PAGE_SIZE) {
     return { ...state, page_size: action.payload };
+  }
+
+  if (action.type === OPEN_MODAL) {
+    return { ...state, modal_open: true, modal_id: action.payload };
+  }
+  if (action.type === CLOSE_MODAL) {
+    return { ...state, modal_open: false, modal_id: null };
+  }
+
+  if (action.type === BEGIN_DATA_FETCH) {
+    return { ...state, loading: true };
+  }
+  if (action.type === FETCH_GAME_SUCCESS) {
+    return { ...state, loading: false, game_data: action.payload };
+  }
+  if (action.type === FETCH_GAME_FAILURE) {
+    return { ...state, loading: false, error: action.payload };
   }
   return { ...state };
 };

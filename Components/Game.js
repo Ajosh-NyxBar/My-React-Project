@@ -9,7 +9,7 @@ function Game({ click, values }) {
 
   const { name, background_image } = values;
   return (
-    <GameStyled theme={theme}>
+    <GameStyled theme={theme} onClick={click}>
       <div className="image">
         <Image
           src={!background_image ? noimage : background_image}

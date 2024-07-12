@@ -9,7 +9,7 @@ import { down } from "../utilts/Icons";
 
 export default function Home() {
   const theme = useThemeContext();
-  const { homepage_games, increasePageSize } = useStatsContext();
+  const { homepage_games, increasePageSize, fetchClickedGame, openModal, closeModal } = useStatsContext();
   console.log(theme);
   return (
     <div>
@@ -23,6 +23,11 @@ export default function Home() {
                     key={game.id}
                     values={{ ...game }}
                     className="home-item"
+                    click={() => {
+                      fetchClickedGame(game.id)
+                      openModal(game.id)
+                    }
+                    }
                   />
                 );
               })}
