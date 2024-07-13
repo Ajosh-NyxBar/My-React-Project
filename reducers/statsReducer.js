@@ -8,6 +8,7 @@ import {
   FETCH_GAME_SUCCESS,
   INCREASE_PAGE_SIZE,
   OPEN_MODAL,
+  POPULAR_GAMES,
 } from "../utilts/action";
 
 const statsReducer = (state, action) => {
@@ -40,6 +41,9 @@ const statsReducer = (state, action) => {
   }
   if (action.type === FETCH_GAME_SUCCESS) {
     return { ...state, loading: false, game_data: action.payload };
+  }
+  if (action.type === POPULAR_GAMES) {
+    return { ...state, loading: false, popular_games: action.payload.results }; // Pastikan payload adalah array
   }
   if (action.type === FETCH_GAME_FAILURE) {
     return { ...state, loading: false, error: action.payload };

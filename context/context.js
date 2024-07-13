@@ -10,6 +10,7 @@ import {
   FETCH_GAME_SUCCESS,
   INCREASE_PAGE_SIZE,
   OPEN_MODAL,
+  POPULAR_GAMES,
 } from "../utilts/action";
 import reducer from "../reducers/statsReducer";
 import { API_KEY } from "../config";
@@ -31,6 +32,7 @@ export const ContextProvider = ({ children }) => {
       genre: [],
     },
     homepage_games: [],
+    popular_games: [],
   };
 
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -46,17 +48,31 @@ export const ContextProvider = ({ children }) => {
     }
   };
 
-  console.log(state)
+  console.log(state);
 
   const fetchGame = async (id) => {
     dispatch({ type: FETCH_GAME_BEGIN });
 
     try {
-      const game = await axios.get(`https://api.rawg.io/api/games/${id}?key=${API_KEY}`);
+      const game = await axios.get(
+        `https://api.rawg.io/api/games/${id}?key=${API_KEY}`
+      );
       console.log(game.data);
       dispatch({ type: FETCH_GAME_SUCCESS, payload: game.data });
     } catch (error) {
       dispatch({ type: FETCH_GAME_FAILURE, payload: error });
+    }
+  };
+
+  // popular Game
+  const PopularGames = async (url) => {
+    dispatch({ type: BEGIN_DATA_FETCH });
+    try {
+      const res = await axios.get(url);
+      console.log('Popular Games Data:', res.data); // Tambahkan log ini
+      dispatch({ type: POPULAR_GAMES, payload: res.data });
+    } catch (error) {
+      dispatch({ type: DATA_FETCH_FAILURE, payload: error });
     }
   };
 
@@ -77,25 +93,32 @@ export const ContextProvider = ({ children }) => {
     dispatch({
       type: OPEN_MODAL,
       payload: id,
-    })
-  }
+    });
+  };
   const closeModal = () => {
     dispatch({
       type: CLOSE_MODAL,
-    })
-  }
+    });
+  };
 
   const fetchClickedGame = async (id) => {
-    console.log(id)
     fetchGame(id);
   };
 
   useEffect(() => {
     fetchGames(`${baseUrl}&page_size=${state.page_size}`);
+    PopularGames(`${baseUrl}&page_size=${state.page_size}`);
   }, [state.page_size]);
   return (
     <StatsContext.Provider
-      value={{ ...state, collapseMenu, increasePageSize, fetchClickedGame, openModal, closeModal }}
+      value={{
+        ...state,
+        collapseMenu,
+        increasePageSize,
+        fetchClickedGame,
+        openModal,
+        closeModal,
+      }}
     >
       {children}
     </StatsContext.Provider>
