@@ -8,24 +8,24 @@ import Button from "../../Components/Button";
 import { down } from "../../utilts/icons";
 import { useThemeContext } from "../../context/themeContext";
 
-function upcoming() {
+function Upcoming() {
   const theme = useThemeContext();
   const {
     upcoming_games,
     fetchClickedGame,
     openModal,
     searching,
-    games,
-    loading,
     increasePageSize,
+    games,
   } = useStatsContext();
+
   return (
     <Layout>
       <MainContent>
         <UpcomingStyles>
-          <div className="items">
-            {upcoming_games.map((game) => {
-              return (
+          {!searching && (
+            <div className="items">
+              {upcoming_games.map((game) => (
                 <Game
                   key={game.id}
                   values={{ ...game }}
@@ -34,9 +34,25 @@ function upcoming() {
                     openModal(game.id);
                   }}
                 />
-              );
-            })}
-          </div>
+              ))}
+            </div>
+          )}
+          {searching && (
+            <div className="items">
+              {games.map((game) => {
+                return (
+                  <Game
+                    key={game.id}
+                    values={{ ...game }}
+                    click={() => {
+                      fetchClickedGame(game.id);
+                      openModal(game.id);
+                    }}
+                  />  
+                );
+              })}
+            </div>
+          )}
           <div className="loadmore">
             <Button
               name={"Load More"}
@@ -70,4 +86,4 @@ const UpcomingStyles = styled.div`
   }
 `;
 
-export default upcoming;
+export default Upcoming;

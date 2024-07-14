@@ -9,6 +9,7 @@ import {
   INCREASE_PAGE_SIZE,
   OPEN_MODAL,
   POPULAR_GAMES,
+  SEARCH_DATA_FETCHED,
   UPCOMING_GAMES,
 } from "../utilts/action";
 
@@ -51,6 +52,16 @@ const statsReducer = (state, action) => {
   }
   if (action.type === UPCOMING_GAMES) {
     return { ...state, loading: false, upcoming_games: action.payload.results }; // Pastikan payload adalah array
+  }
+  if (action.type === SEARCH_DATA_FETCHED) {
+    return {
+      ...state,
+      loading: false,
+      upcoming_games: [],
+      popular_games: [],
+      homepage_games: [],
+      games: action.payload.results,
+    }; // Pastikan payload adalah array
   }
   return { ...state };
 };

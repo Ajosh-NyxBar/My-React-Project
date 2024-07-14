@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useReducer } from "react";
+import React, { useContext, useEffect, useReducer, useState } from "react";
 import {
   BEGIN_DATA_FETCH,
   CLOSE_MODAL,
@@ -11,6 +11,7 @@ import {
   INCREASE_PAGE_SIZE,
   OPEN_MODAL,
   POPULAR_GAMES,
+  SEARCH_DATA_FETCHED,
   UPCOMING_GAMES,
 } from "../utilts/action";
 import reducer from "../reducers/statsReducer";
@@ -35,9 +36,11 @@ export const ContextProvider = ({ children }) => {
     homepage_games: [],
     popular_games: [],
     upcoming_games: [],
+    games: [],
   };
 
   const [state, dispatch] = useReducer(reducer, initialState);
+  const [searching, setSearching] = useState('');
 
   // Fetch Games
   const fetchGames = async (url) => {
@@ -117,6 +120,19 @@ export const ContextProvider = ({ children }) => {
       dispatch({ type: DATA_FETCH_FAILURE, payload: error });
     }
   };
+  const searchGames = async (search) => {
+    dispatch({ type: BEGIN_DATA_FETCH });
+    try {
+      const res = await axios.get( `${baseUrl}&search=${search}`);
+      console.log('Upcoming Games Data:', res.data); // Tambahkan log ini
+      dispatch({ type: SEARCH_DATA_FETCHED, payload: res.data });
+      setSearching(true);
+    } catch (error) {
+      dispatch({ type: DATA_FETCH_FAILURE, payload: error });
+    }
+
+   
+  };
 
   useEffect(() => {
     fetchGames(`${baseUrl}&page_size=${state.page_size}`);
@@ -132,6 +148,12 @@ export const ContextProvider = ({ children }) => {
         fetchClickedGame,
         openModal,
         closeModal,
+        searching,
+        setSearching,
+        searchGames,
+        fetchGames,
+        PopularGames,
+        UpcomingGames,
       }}
     >
       {children}

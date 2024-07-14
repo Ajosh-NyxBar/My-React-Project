@@ -1,16 +1,75 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { search } from "../utilts/icons";
 import styled from "styled-components";
 import { useThemeContext } from "../context/themeContext";
+import { useStatsContext } from "../context/context";
+import { API_KEY } from "../config";
 
 function SearchForm() {
   const theme = useThemeContext();
+  const {
+    increasePageSize,
+    searching,
+    setSearching,
+    searchGames,
+    PopularGames,
+    fetchGames,
+    UpcomingGames,
+    page_size,
+  } = useStatsContext();
+
+  const [searchValue, setSearchValue] = useState("");
+
+  const handleChange = (e) => {
+    setSearchValue(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (searchValue) {
+      searchGames(searchValue);
+      increasePageSize();
+    }
+  };
+
+  useEffect(() => {
+    if (searchValue === "") {
+      setSearching(false);
+      PopularGames(
+        `https://api.rawg.io/api/games?key=${API_KEY}&dates=2022-09-01,2023-09-01`
+      );
+      fetchGames(
+        `https://api.rawg.io/api/games?key=${API_KEY}&page_size=${page_size}`
+      );
+      UpcomingGames(
+        `https://api.rawg.io/api/games?key=${API_KEY}&dates=2023-07-01,2026-07-01&ordering=-added&page_size=${page_size}`
+      );
+    }
+  }, [searching]);
 
   return (
     <SearchFormStyle theme={theme}>
       <div className="input-control">
-        <input type="text" placeholder="Search here ..." />
-        <button type="submit" className="search">{search}</button>
+        <input
+          type="text"
+          placeholder="Search here ..."
+          onChange={handleChange}
+          value={searchValue}
+        />
+        <button
+          type="submit"
+          className="search"
+          onClick={(e) => {
+            e.preventDefault();
+            if (searchValue) {
+              searchGames(searchValue);
+                increasePageSize();
+            }
+            console.log("increasePageSize called"); // Added log
+          }}
+        >
+          {search}
+        </button>
       </div>
     </SearchFormStyle>
   );
@@ -41,7 +100,7 @@ const SearchFormStyle = styled.div`
       }
     }
 
-    .search{
+    .search {
       position: absolute;
       right: 15px;
       top: 50%;

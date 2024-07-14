@@ -23,20 +23,38 @@ function popular() {
     <Layout>
       <MainContent>
         <PopularStyles>
-          <div className="items">
-            {popular_games.map((game) => {
-              return (
-                <Game
-                  key={game.id}
-                  values={{ ...game }}
-                  click={() => {
-                    fetchClickedGame(game.id);
-                    openModal(game.id);
-                  }}
-                />
-              );
-            })}
-          </div>
+          {!searching && (
+            <div className="items">
+              {popular_games.map((game) => {
+                return (
+                  <Game
+                    key={game.id}
+                    values={{ ...game }}
+                    click={() => {
+                      fetchClickedGame(game.id);
+                      openModal(game.id);
+                    }}
+                  />
+                );
+              })}
+            </div>
+          )}
+          {searching && (
+            <div className="items">
+              {games.map((game) => {
+                return (
+                  <Game
+                    key={game.id}
+                    values={{ ...game }}
+                    click={() => {
+                      fetchClickedGame(game.id);
+                      openModal(game.id);
+                    }}
+                  />
+                );
+              })}
+            </div>  
+          )}
           <div className="loadmore">
             <Button
               name={"Load More"}
