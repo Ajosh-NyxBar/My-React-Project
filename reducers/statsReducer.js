@@ -9,6 +9,7 @@ import {
   INCREASE_PAGE_SIZE,
   OPEN_MODAL,
   POPULAR_GAMES,
+  UPCOMING_GAMES,
 } from "../utilts/action";
 
 const statsReducer = (state, action) => {
@@ -47,6 +48,9 @@ const statsReducer = (state, action) => {
   }
   if (action.type === FETCH_GAME_FAILURE) {
     return { ...state, loading: false, error: action.payload };
+  }
+  if (action.type === UPCOMING_GAMES) {
+    return { ...state, loading: false, upcoming_games: action.payload.results }; // Pastikan payload adalah array
   }
   return { ...state };
 };

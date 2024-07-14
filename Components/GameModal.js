@@ -238,6 +238,7 @@ const GameModalStyled = styled.div`
       p {
         font-size: 16px;
         line-height: 1.5;
+        text-align: justify;
       }
     }
     .genres {

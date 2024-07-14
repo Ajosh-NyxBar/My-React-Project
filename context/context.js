@@ -11,6 +11,7 @@ import {
   INCREASE_PAGE_SIZE,
   OPEN_MODAL,
   POPULAR_GAMES,
+  UPCOMING_GAMES,
 } from "../utilts/action";
 import reducer from "../reducers/statsReducer";
 import { API_KEY } from "../config";
@@ -33,6 +34,7 @@ export const ContextProvider = ({ children }) => {
     },
     homepage_games: [],
     popular_games: [],
+    upcoming_games: [],
   };
 
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -105,9 +107,21 @@ export const ContextProvider = ({ children }) => {
     fetchGame(id);
   };
 
+  const UpcomingGames = async (url) => {
+    dispatch({ type: BEGIN_DATA_FETCH });
+    try {
+      const res = await axios.get(url);
+      console.log('Upcoming Games Data:', res.data); // Tambahkan log ini
+      dispatch({ type: UPCOMING_GAMES, payload: res.data });
+    } catch (error) {
+      dispatch({ type: DATA_FETCH_FAILURE, payload: error });
+    }
+  };
+
   useEffect(() => {
     fetchGames(`${baseUrl}&page_size=${state.page_size}`);
     PopularGames(`${baseUrl}&page_size=${state.page_size}`);
+    UpcomingGames(`${baseUrl}&dates=2024-09-01,2025-03-15&ordering=-added&page_size=${state.page_size}`);
   }, [state.page_size]);
   return (
     <StatsContext.Provider
