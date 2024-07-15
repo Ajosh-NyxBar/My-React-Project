@@ -17,6 +17,14 @@ export default {
           sm: "2rem",
         },
       },
+      userSelect: {
+        none: 'none',
+      },
+    },
+  },
+  variants: {
+    extend: {
+      userSelect: ['responsive'],
     },
   },
   plugins: [],
