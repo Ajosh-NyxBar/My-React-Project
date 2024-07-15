@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import Coffee1 from "../../assets/coffee/coffee1.png";
 import Coffee3 from "../../assets/coffee/coffee3.png";
@@ -34,7 +34,6 @@ const cardVariants = {
     y: 0,
     opacity: 1,
     transition: {
-      // delay: 0.2,
       type: "spring",
       stiffness: 150,
       damping: 10,
@@ -53,7 +52,10 @@ const containerVariants = {
     },
   },
 };
+
 const Services = () => {
+  const [selectedImage, setSelectedImage] = useState(null);
+
   return (
     <div className="container my-16 space-y-4">
       {/* Header Section */}
@@ -98,6 +100,7 @@ const Services = () => {
       >
         {servicesData.map((service) => (
           <motion.div
+            key={service.id}
             variants={cardVariants}
             className="text-center p-4 space-y-6"
           >
@@ -105,6 +108,7 @@ const Services = () => {
               src={service.image}
               alt={service.title}
               className="img-shadow2 max-w-[200px] mx-auto hover:scale-110 duration-300 cursor-pointer"
+              onClick={() => setSelectedImage(service.image)}
             />
             <div className="space-y-2">
               <h1 className="text-2xl font-bold text-primary">
@@ -115,6 +119,23 @@ const Services = () => {
           </motion.div>
         ))}
       </motion.div>
+
+      {selectedImage && (
+        <motion.div
+          className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          onClick={() => setSelectedImage(null)}
+        >
+          <motion.img
+            src={selectedImage}
+            alt="Preview"
+            className="max-w-full max-h-full"
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+          />
+        </motion.div>
+      )}
     </div>
   );
 };
