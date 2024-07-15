@@ -63,11 +63,11 @@ const Hero = () => {
                     }}
                     className="text-sm opacity-55 leading-loose select-none"
                   >
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Ipsum quidem iusto quas, consequatur, optio enim rem
-                    voluptates sint ipsam temporibus quod quibusdam labore
-                    beatae repudiandae debitis provident vitae. Dolores,
-                    debitis!
+                    Nikmati setiap tegukan kopi hitam yang kaya akan cita rasa.
+                    Rasakan kehangatan dan aroma yang memikat, membawa Anda
+                    pada petualangan rasa yang tak terlupakan. Kopi hitam kami
+                    adalah pilihan sempurna untuk memulai hari Anda dengan semangat
+                    dan energi baru.
                   </motion.h1>
                 </div>
                 <motion.div
@@ -79,7 +79,7 @@ const Hero = () => {
                     delay: 1,
                   }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="absolute -top-6 -left-7 w-[300px] h-[190px] bg-gray-700/25 "
+                  className="absolute -top-6 -left-7 w-[300px] h-[220px] bg-gray-700/25 "
                 ></motion.div>
               </div>
             </div>
@@ -158,11 +158,10 @@ const Hero = () => {
                     animate={{ opacity: 1, y: 0 }}
                     className="text-sm opacity-55 leading-loose text-right"
                   >
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Ipsum quidem iusto quas, consequatur, optio enim rem
-                    voluptates sint ipsam temporibus quod quibusdam labore
-                    beatae repudiandae debitis provident vitae. Dolores,
-                    debitis!
+                    Kopi hitam kami adalah pilihan terbaik untuk Anda yang
+                    menginginkan cita rasa autentik. Setiap tegukan membawa
+                    kehangatan dan aroma yang memikat, memberikan energi
+                    dan semangat baru untuk memulai hari.
                   </motion.h1>
                 </div>
                 <motion.div
