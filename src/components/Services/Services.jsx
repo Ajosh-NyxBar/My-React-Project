@@ -70,6 +70,7 @@ const Services = () => {
             stiffness: 150,
             damping: 10,
           }}
+          viewport={{ once: true }}
         >
           Fresh and <span className="text-primary">Tasty Coffee</span>
         </motion.h1>
@@ -83,6 +84,7 @@ const Services = () => {
             stiffness: 150,
             damping: 10,
           }}
+          viewport={{ once: true }}
         >
           Nikmati setiap tegukan kopi yang kaya akan cita rasa. Rasakan
           kehangatan dan aroma yang memikat, membawa Anda pada petualangan rasa
@@ -94,8 +96,8 @@ const Services = () => {
       <motion.div
         variants={containerVariants}
         initial="hidden"
-        whileInView={"visible"}
-        viewport={{ amount: 0.8 }}
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.8 }}
         className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8"
       >
         {servicesData.map((service) => (
