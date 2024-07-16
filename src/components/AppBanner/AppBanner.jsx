@@ -2,7 +2,6 @@ import React from "react";
 import { motion } from "framer-motion";
 import bannerImg from "../../assets/website/Kopu.jpeg";
 import appStore from "../../assets/website/app_store.png";
-import creditCard from "../../assets/website/credit-cards.webp";
 import playStore from "../../assets/website/play_store.png";
 
 const BannerStyle = {
@@ -22,7 +21,7 @@ const AppBanner = () => {
         className="sm:min-h-[400px] sm:flex sm:justify-end sm:items-center rounded-xl"
       >
         <div>
-          <div className="space-y-6 max-w-xl mx-auto mr-36">
+          <div className="space-y-6 max-w-xl mx-auto sm:mr-36">
             <motion.h1
               initial={{ y: 100, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}

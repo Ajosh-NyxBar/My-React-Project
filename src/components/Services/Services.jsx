@@ -109,7 +109,7 @@ const Services = () => {
             <img
               src={service.image}
               alt={service.title}
-              className="img-shadow2 max-w-[200px] mx-auto hover:scale-110 duration-300 cursor-pointer"
+              className="img-shadow2 max-w-[150px] mx-auto hover:scale-110 duration-300 cursor-pointer"
               onClick={() => setSelectedImage(service.image)}
             />
             <div className="space-y-2">
