@@ -14,6 +14,7 @@ const WhereToBuy = () => {
             transition={{
               delay: 0.2,
             }}
+            viewport={{ once: true }}
             className="text-4xl font-bold text-darkGray font-serif"
           >
             Buy our products from anywhere
@@ -24,6 +25,7 @@ const WhereToBuy = () => {
             transition={{
               delay: 0.4,
             }}
+            viewport={{ once: true }}
             className="flex items-center gap-4"
           >
             <input
@@ -43,6 +45,7 @@ const WhereToBuy = () => {
             transition={{
               delay: 0.6,
             }}
+            viewport={{ once: true }}
             className="flex items-center gap-4"
           >
             <input
@@ -62,6 +65,7 @@ const WhereToBuy = () => {
             transition={{
               delay: 0.8,
             }}
+            viewport={{ once: true }}
             className="primary-btn w-full"
           >
             Order Now
@@ -78,6 +82,7 @@ const WhereToBuy = () => {
               damping: 10,
               delay: 1,
             }}
+            viewport={{ once: true }}
             src={worldMap}
             alt="world map"
             className="w-full sm:w-[500px] mx-auto"
