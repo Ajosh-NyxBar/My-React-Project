@@ -1,6 +1,8 @@
 import React from "react";
 import { MdMenu } from "react-icons/md";
 import { SlEarphones } from "react-icons/sl";
+import logo from "../../assets/logo.png";
+import { UpdateFollower } from "react-mouse-follower";
 
 const navbarMenu = [
   {
@@ -35,7 +37,8 @@ const Navbar = () => {
       <div className="bg-brandDark text-white py-4 font-varela">
         <nav className="container flex justify-between items-center">
           {/* Logo */}
-          <div>
+          <div className="flex items-center gap-2">
+            <img src={logo} alt="logo" className="w-12 h-12 rounded-full" />{" "}
             <a href="#" className="text-xl font-bold uppercase">
               Ajosh{" "}
               <span className="font-extralight text-white/70">Market</span>
@@ -46,22 +49,42 @@ const Navbar = () => {
             <ul className="flex items-center gap-4">
               {navbarMenu.map((menu) => (
                 <li key={menu.id}>
-                  <a
-                    href={menu.link}
-                    className="inline-block text-sm py-2 px-3 uppercase"
+                  <UpdateFollower
+                    mouseOptions={{
+                      backgroundColor: "white",
+                      zIndex: 999,
+                      followSpeed: 1.5,
+                      scale: 5,
+                      mixBlendMode: "difference",
+                    }}
                   >
-                    {menu.title}
-                  </a>
+                    <a
+                      href={menu.link}
+                      className="inline-block text-sm py-2 px-3 uppercase"
+                    >
+                      {menu.title}
+                    </a>
+                  </UpdateFollower>
                 </li>
               ))}
-              <button className="text-xl ps-14">
-                <SlEarphones />
-              </button >
+              <UpdateFollower
+                mouseOptions={{
+                  backgroundColor: "white",
+                  zIndex: 999,
+                  followSpeed: 1.5,
+                  scale: 5,
+                  mixBlendMode: "difference",
+                }}
+              >
+                <button className="text-xl ps-14">
+                  <SlEarphones />
+                </button>
+              </UpdateFollower>
             </ul>
           </div>
           {/* Mobile humberger */}
           <div className="md:hidden">
-            <MdMenu className="text-4xl"/>
+            <MdMenu className="text-4xl" />
           </div>
         </nav>
       </div>
