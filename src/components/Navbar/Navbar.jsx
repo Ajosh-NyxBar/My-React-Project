@@ -38,7 +38,17 @@ const Navbar = () => {
         <nav className="container flex justify-between items-center">
           {/* Logo */}
           <div className="flex items-center gap-2">
-            <img src={logo} alt="logo" className="w-12 h-12 rounded-full" />{" "}
+            <UpdateFollower
+              mouseOptions={{
+                backgroundColor: "white",
+                zIndex: 999,
+                followSpeed: 1.5,
+                scale: 5,
+                mixBlendMode: "difference",
+              }}
+            >
+              <img src={logo} alt="logo" className="w-12 h-12 rounded-full" />{" "}
+            </UpdateFollower>
             <a href="#" className="text-xl font-bold uppercase">
               Ajosh{" "}
               <span className="font-extralight text-white/70">Market</span>
