@@ -86,9 +86,11 @@ const Navbar = () => {
                   mixBlendMode: "difference",
                 }}
               >
-                <button className="text-xl ps-14">
-                  <SlEarphones />
-                </button>
+                <div>
+                  <button className="text-xl ps-14">
+                    <SlEarphones className="hover:rotate-[360deg] duration-500 z-[99999] mix-blend-difference "/>
+                  </button>
+                </div>
               </UpdateFollower>
             </ul>
           </div>
