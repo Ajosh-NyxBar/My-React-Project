@@ -93,7 +93,7 @@ const Hero = () => {
                 >
                   <motion.h1
                     key={activeData.id}
-                    className="text-3xl lg:text-6xl font-bold font-varela"
+                    className="text-3xl lg:text-6xl font-bold font-varela "
                     variants={fadeUp(0.2)}
                     initial="hidden"
                     animate="show"
@@ -163,7 +163,7 @@ const Hero = () => {
                 </UpdateFollower>
               </AnimatePresence>
               {/* Headphone list */}
-              <div className="flex items-center justify-center md:justify-start gap-4 !mt-24">
+              <div className="flex items-center justify-center md:justify-start gap-4  mt-24">
                 <motion.div
                   initial={{ opacity: 0, x: -50 }}
                   animate={{ opacity: 1, x: 0, transition: { duration: 1 } }}

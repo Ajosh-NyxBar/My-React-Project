@@ -73,6 +73,7 @@ const Services = () => {
                 }}
               >
                 <motion.div
+                  viewport={{ once: true, amount: 0.2 }}
                   variants={fadeUp(service.delay)}
                   initial="hidden"
                   whileInView="show"

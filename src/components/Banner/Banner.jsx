@@ -25,9 +25,9 @@ const Banner = () => {
   return (
     <>
       <section>
-        <div className="container py-14 grid grid-cols-1 md:grid-cols-2 space-y-6 md:space-y-0 gap-12">
+        <div className="container py-14 grid grid-cols-1 md:grid-cols-2 space-y-6 md:space-y-0 gap-12 justify-center">
           {/* Banner Image */}
-          <div>
+          <div className="flex justify-center">
             <motion.img
               initial={{ opacity: 0, x: -100, rotate: -180 }}
               whileInView={{
@@ -43,12 +43,13 @@ const Banner = () => {
             />
           </div>
           {/* Banner Text info */}
-          <div className="flex flex-col justify-center">
+          <div className="flex flex-col justify-center items-center md:items-start">
             <div className="text-center md:text-left space-y-4 lg:max-w-[450px]">
               <motion.h1
                 variants={fadeUp(0.2)}
                 initial="hidden"
                 whileInView="show"
+                viewport={{ once: true, amount: 0.2 }}
                 className="text-3xl lg:text-4xl font-semibold font-poppins"
               >
                 The Latest Headphone With The Latest Technology
@@ -57,6 +58,7 @@ const Banner = () => {
                 variants={fadeUp(0.9)}
                 initial="hidden"
                 whileInView="show"
+                viewport={{ once: true, amount: 0.2 }}
                 className="text-lg lg:text-xl font-medium font-poppins"
               >
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste
@@ -90,7 +92,6 @@ const Banner = () => {
           </div>
         </div>
       </section>
-      ;
     </>
   );
 };
