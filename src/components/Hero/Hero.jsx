@@ -75,8 +75,8 @@ const Hero = () => {
 
   return (
     <>
-      <section className="bg-brandDark text-white font-varela relative">
-        <div className="container grid grid-cols-1 md:grid-cols-2 min-h-[700px]">
+      <section className="bg-brandDark text-white font-varela relative overflow-hidden">
+        <div className="container grid grid-cols-1 md:grid-cols-2 min-h-[700px] overflow-hidden">
           {/* Brand */}
           <div className="flex flex-col justify-center py-14 md:py-0 xl:max-w-[500px]">
             <div className="space-y-5 text-center md:text-left">
@@ -113,7 +113,7 @@ const Hero = () => {
                     rotate: -720,
                     mixBlendMode: "difference",
                     backgroundElement: (
-                      <div style={{ fontSize: "3rem", color: "black" }}>
+                      <div style={{ fontSize: "1.5rem", color: "black" }}>
                         <p>{activeData.subtitle}</p>
                       </div>
                     ),
@@ -162,7 +162,6 @@ const Hero = () => {
                   </motion.button>
                 </UpdateFollower>
               </AnimatePresence>
-
               {/* Headphone list */}
               <div className="flex items-center justify-center md:justify-start gap-4 !mt-24">
                 <motion.div
@@ -174,7 +173,11 @@ const Hero = () => {
                 ></motion.div>
                 <motion.p
                   initial={{ opacity: 0, scale: 0 }}
-                  animate={{ opacity: 1, scale: 1, transition: { duration: 0.75 } }}
+                  animate={{
+                    opacity: 1,
+                    scale: 1,
+                    transition: { duration: 0.75 },
+                  }}
                   exit={{ opacity: 0, scale: 0, transition: { duration: 1 } }}
                   viewport={{ once: true, amount: 0.5 }}
                 >
@@ -188,7 +191,7 @@ const Hero = () => {
                   viewport={{ once: true, amount: 0.5 }}
                 ></motion.div>
               </div>
-              <div className="grid grid-cols-3 gap-10">
+              <div className="grid grid-cols-3 gap-4 md:gap-10">
                 {headphone.map((item, index) => {
                   const isEven = index % 2 === 0;
                   return (
@@ -218,7 +221,7 @@ const Hero = () => {
                             <motion.img
                               src={item.image}
                               alt={item.title}
-                              className="w-[100px]"
+                              className="w-[50px] md:w-[100px]"
                               viewport={{ once: true, amount: 0.5 }}
                             />
                           </AnimatePresence>
@@ -238,24 +241,6 @@ const Hero = () => {
           </div>
           {/* Hero Image */}
           <div className="flex flex-col justify-end items-center">
-            <motion.svg
-              width="0"
-              height="0"
-              viewBox="0 0 100 100"
-              style={{ position: "absolute" }}
-              viewport={{ once: true, amount: 0.5 }}
-            >
-              <motion.path
-                d="M 50 100 Q 100 50 50 0 Q 0 50 50 100"
-                fill="transparent"
-                stroke="transparent"
-                variants={variants}
-                initial="initial"
-                animate="animate"
-                exit="exit"
-                viewport={{ once: true, amount: 0.5 }}
-              />
-            </motion.svg>
             <motion.div
               key={activeData.id}
               initial={{ opacity: 0 }}
@@ -263,11 +248,12 @@ const Hero = () => {
               exit={{ opacity: 0, transition: { duration: 1 } }}
               style={{ position: "absolute" }}
               viewport={{ once: true, amount: 0.5 }}
+              className="pt-10  "
             >
               <img
                 src={activeData.image}
                 alt={activeData.title}
-                className="w-[300px] md:w-[400px] xl:w-[550px]"
+                className="w-[200px] md:w-[400px] xl:w-[550px] pt-10 mt-10"
               />
             </motion.div>
           </div>
