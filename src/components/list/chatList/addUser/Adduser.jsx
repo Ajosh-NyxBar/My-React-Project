@@ -11,7 +11,7 @@ const Adduser = () => {
   const handleAdd = async (user) => {
     const chatRef = collection(db, "chats");
     const userChatRef = collection(db, "userchats");
-
+    
     try {
       const newChatRef = doc(chatRef);
 
