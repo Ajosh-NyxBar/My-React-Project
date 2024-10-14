@@ -93,6 +93,7 @@ const Hero = () => {
                   stiffness: 100,
                   delay: 0.4,
                 }}
+                // test
                 animate={{ opacity: 1, scale: 1 }}
                 src={Coffee}
                 alt=""
